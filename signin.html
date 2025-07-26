@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="header text-center">
+    <h2>Sign In</h2>
+  </div>
+  <form id="signin-form" class="form">
+    <div class="form-control">
+      <label for="signin-username">Username</label>
+      <input type="text" name="username" placeholder="yourusername" id="signin-username" />
+      <i class="fas fa-check-circle"></i>
+      <i class="fas fa-exclamation-circle"></i>
+      <small>Error message</small>
+    </div>
+    <div class="form-control">
+      <label for="signin-password">Password</label>
+      <div class="input-wrapper">
+        <input type="password" name="password" placeholder="Password" id="signin-password" />
+        <span class="eye-toggle eye-1">
+          <ion-icon name="eye" id="signin-eye-icon-1" class="eye-icon" style="display:none"></ion-icon>
+          <ion-icon name="eye-off" id="signin-eye-off-icon-1" class="eye-icon"></ion-icon>
+        </span>
+      </div>
+      <i class="fas fa-check-circle"></i>
+      <i class="fas fa-exclamation-circle"></i>
+      <small>Error message</small>
+    </div>
+    <div class="form-control">
+      <label for="signin-password2">Password check</label>
+      <div class="input-wrapper">
+        <input type="password" name="password2" placeholder="Password" id="signin-password2" />
+        <span class="eye-toggle">
+          <ion-icon name="eye" id="signin-eye-icon-2" class="eye-icon" style="display:none"></ion-icon>
+          <ion-icon name="eye-off" id="signin-eye-off-icon-2" class="eye-icon"></ion-icon>
+        </span>
+      </div>
+      <i class="fas fa-check-circle"></i>
+      <i class="fas fa-exclamation-circle"></i>
+      <small>Error message</small>
+    </div>
+    <button type="submit">Sign In</button>
+  </form>
+</div>
