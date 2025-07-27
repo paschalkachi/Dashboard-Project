@@ -312,6 +312,8 @@ const signIn = `
 </div>
 `;
 
+render(dashBoard);
+
 function render(e) {
   document.querySelector('.main-container').innerHTML = e;
 
