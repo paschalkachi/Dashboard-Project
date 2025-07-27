@@ -547,7 +547,7 @@ document.querySelector('#sign-in').addEventListener('click', () => {
 
 
 // Set the current year in the footer
-document.getElementById('2025').textContent = new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
 
 
 
