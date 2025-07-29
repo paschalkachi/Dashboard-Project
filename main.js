@@ -322,6 +322,12 @@ function render(e) {
 // Dashboard Event listeners
 document.querySelector('#dashboard-btn').addEventListener('click', () => {
   render(dashBoard);
+  closeSidebar(); //closes the sidebar
+});
+
+
+document.querySelector('#dashboard-link').addEventListener('click', () => {
+  render(dashBoard);
 });
 
 // SIGN UP FORM SETUP
@@ -450,7 +456,8 @@ function setupSignUpForm() {
 // Sign up event listener
 document.querySelector('#sign-up').addEventListener('click', () => {
   render(signUp);
-  setupSignUpForm(); 
+  setupSignUpForm();
+  closeSidebar(); //closes the sidebar 
 });
 
 
@@ -543,7 +550,8 @@ function setupSignInForm() {
 // Sign in event listener
 document.querySelector('#sign-in').addEventListener('click', () => {
   render(signIn);
-  setupSignInForm(); 
+  setupSignInForm();
+  closeSidebar(); //closes the sidebar 
 });
 
 // Set the current year in the footer
@@ -568,7 +576,3 @@ function closeSidebar() {
   sidebar.classList.add('-translate-x-80');
   sidebar.classList.remove('translate-x-0');
 }
-
-
-
-
