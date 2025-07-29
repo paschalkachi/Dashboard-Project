@@ -572,7 +572,3 @@ function closeSidebar() {
 
 
 
-
-
-
-
