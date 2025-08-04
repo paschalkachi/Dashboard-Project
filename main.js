@@ -332,36 +332,48 @@ document.querySelector('#dashboard-link').addEventListener('click', () => {
 
 // SIGN UP FORM SETUP
 function setupSignUpForm() {
-  const form = document.getElementById('form');
-  const username = document.getElementById('username');
-  const email = document.getElementById('email');
-  const password = document.getElementById('password');
-  const password2 = document.getElementById('password2');
-  const eyeIcon1 = document.getElementById("eye-icon-1");
-  const eyeOffIcon1 = document.getElementById("eye-off-icon-1");
-  const eyeIcon2 = document.getElementById("eye-icon-2");
-  const eyeOffIcon2 = document.getElementById("eye-off-icon-2");
-  
-  if (!form) return; // If form not present, exit
+const form = document.getElementById('form');
+const username = document.getElementById('username');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const password2 = document.getElementById('password2');
+const eyeIcon1 = document.getElementById("eye-icon-1");
+const eyeOffIcon1 = document.getElementById("eye-off-icon-1");
+const eyeIcon2 = document.getElementById("eye-icon-2");
+const eyeOffIcon2 = document.getElementById("eye-off-icon-2");
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    checkInputs();
-    const formData = new FormData(form);
-    const res = Object.fromEntries(formData);
-    const payload = JSON.stringify(res);
-    console.log(payload);
+if (!form) return; // If form not present, exit
 
-    fetch('https://jsonplaceholder.typicode.com/posts', {
-      method: "POST",
-      body: payload,
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-    .then(res => res.json())
-    .then(res => console.log(res));
-  });
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  checkInputs();
+  const formData = new FormData(form);
+  const res = Object.fromEntries(formData);
+console.log(res);
+
+  // Remove password2 from the object before saving
+  delete res.password2;
+
+  // Save user info to localStorage
+  localStorage.setItem('userInfo', JSON.stringify(res));
+
+  alert("User info saved to localStorage!");
+
+
+// when you want to send the data to a server using fetch api, uncomment the following lines
+  // const payload = JSON.stringify(res);
+  // console.log(payload);
+
+  // fetch('https://jsonplaceholder.typicode.com/posts', {
+  //   method: "POST",
+  //   body: payload,
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   }
+  // })
+  // .then(res => res.json())
+  // .then(res => console.log(res));
+});
 
   function checkInputs() {
     const usernameValue = username.value.trim();
@@ -484,28 +496,48 @@ function setupSignInForm() {
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
 
+    // Input validation
     if (usernameValue === '') {
       setErrorFor(username, 'Username cannot be blank');
+      return;
     } else {
       setSuccessFor(username);
     }
 
     if (passwordValue === '') {
       setErrorFor(password, 'Password cannot be blank');
+      return;
     } else if (passwordValue.length < 7) {
       setErrorFor(password, 'Password must be at least 7 characters');
+      return;
     } else {
       setSuccessFor(password);
     }
 
     if (password2Value === '') {
       setErrorFor(password2, 'Password check cannot be blank');
+      return;
     } else if (password2Value !== passwordValue) {
       setErrorFor(password2, 'Passwords do not match');
+      return;
     } else {
       setSuccessFor(password2);
     }
+
+    //  Validate against localStorage
+    const storedUser = JSON.parse(localStorage.getItem('userInfo'));
+
+    if (
+      storedUser.username === usernameValue &&
+      storedUser.password === passwordValue
+    ) {
+      alert("Login successful!");
+  //  Redirect after successful login
+      render(dashBoard);
+ } else { 
+  alert("No account found. Please sign up first.");
   }
+}
 
   function setErrorFor(input, message) {
     const formControl = input.closest('.form-control');
