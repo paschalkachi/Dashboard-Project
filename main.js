@@ -527,6 +527,10 @@ function setupSignInForm() {
     //  Validate against localStorage
     const storedUser = JSON.parse(localStorage.getItem('userInfo'));
 
+    if (!storedUser) {
+    alert("No account found. Please sign up first.");
+    return;
+  }
     if (
       storedUser.username === usernameValue &&
       storedUser.password === passwordValue
@@ -535,7 +539,7 @@ function setupSignInForm() {
   //  Redirect after successful login
       render(dashBoard);
  } else { 
-  alert("No account found. Please sign up first.");
+  alert("invalid username or password. Please try again.");
   }
 }
 
