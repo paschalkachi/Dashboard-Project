@@ -527,7 +527,7 @@ function setupSignInForm() {
     //  Validate against localStorage
     const storedUser = JSON.parse(localStorage.getItem('userInfo'));
 
-    if (!storedUser) {
+    if (storedUser === '') {
     alert("No account found. Please sign up first.");
     return;
   }
